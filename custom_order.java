@@ -1,8 +1,25 @@
 // Code for Beginning Java's Cake & Cupcake Shop Tutorial
+// modifed by alexoah just for fun, but still buggy.
 
 import java.util.Scanner;  // Needed for the Scanner class to read input
 
 public class custom_order {
+	static double totalCost = 0;
+	static String addOnList = "";
+	
+	static void addItem(String item, double cost) {
+		totalCost += cost;
+		addOnList += item;
+	}
+	
+	static void setAddOn(String addOnItem, double costOfItem) {
+		if ((addOnItem != "no") && (addOnItem != "")) {
+			if(addOnList != "") {
+				addOnList += ", ";
+			}
+			addItem(addOnItem, costOfItem);
+		}
+	}
 
     // STEP 1 PRINTING HELLO WORLD TO CONSOLE
     public static void main(String[] args) {
@@ -73,10 +90,8 @@ public class custom_order {
 		System.out.println("What type of FROSTING do you want? ");
 		System.out.println("Vanilla, Chocolate, Strawberry or Coco");
 		frostingType = keyboard.nextLine();
-   
-	 
-	 
-	 
+		setAddOn(frostingType, 2);
+
       
     //TEST CODE
       
@@ -84,9 +99,8 @@ public class custom_order {
 		System.out.println("What type of FILLING do you want? ");
 		System.out.println("Mocha, Mint, Lemon, Caramel or Raspberry");
 		fillingType = keyboard.nextLine();
-
-	  
-	  
+		setAddOn(fillingType, 2);
+ 
       
     // TEST CODE
       
@@ -94,9 +108,8 @@ public class custom_order {
 		System.out.println("What type of TOPPINGS do you want? ");
 		System.out.println("Sprinkles, Cinnamon, Cocoa, Nuts");
 		toppings = keyboard.nextLine();
+		setAddOn(toppings, 2);
 
-	
-      
       
     // TEST CODE
       
@@ -108,19 +121,22 @@ public class custom_order {
 		System.out.println("Frosting: " + frostingType);
 		System.out.println("Filling: " + fillingType);
 		System.out.println("Toppings: " + toppings);
+		System.out.println("Add-on: " + addOnList);
 		System.out.println("_________________________________________");
 
       
 	  
 	  
-	  
+		totalCost += cost;
     
     // TEST CODE
       
     // STEP 10 DISPLAY COST AND SALES TAX
-		System.out.printf("The cost of your order is: $%.2f\n", cost);
-		tax = cost * TAX_RATE;
+		System.out.printf("The cost of your order is: $%.2f\n", totalCost);
+		tax = totalCost * TAX_RATE;
 		System.out.printf("The tax is: $%.2f\n", tax);
-		System.out.printf("The total due is: $%.2f\n",(tax + cost));  
+		System.out.printf("The total due is: $%.2f\n",(tax + totalCost));  
+		
+		
     }   
 }
